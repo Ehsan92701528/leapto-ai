@@ -1,0 +1,114 @@
+[
+  {
+    "id": "int-001",
+    "text": "می‌خوام برای ارشد کامپیوتر برم آلمان و انگلیس",
+    "expected": {
+      "path_intent": "study_abroad",
+      "destination_countries": ["Germany", "United Kingdom"],
+      "field_of_study": "Computer Engineering & Computer Science",
+      "target_degree": "Master"
+    }
+  },
+  {
+    "id": "int-002",
+    "text": "کاری هم میشه بریم؟",
+    "expected": {
+      "path_intent": "work_abroad",
+      "valid": true
+    }
+  },
+  {
+    "id": "int-003",
+    "text": "Is there another way to get out of the country without studying?",
+    "expected": {
+      "path_intent": "alternatives_to_study",
+      "valid": true
+    }
+  },
+  {
+    "id": "int-004",
+    "text": "I want a work visa in Canada, I'm a software engineer",
+    "expected": {
+      "path_intent": "work_abroad",
+      "destination_countries": ["Canada"],
+      "field_of_study": "Computer Engineering & Computer Science"
+    }
+  },
+  {
+    "id": "int-005",
+    "text": "از ایران می‌خوام ارزون برم ایتالیا برای MBA",
+    "expected": {
+      "path_intent": "study_abroad",
+      "destination_countries": ["Italy"],
+      "field_of_study": "Management, Business & Industrial Engineering",
+      "origin_country": "Iran"
+    }
+  },
+  {
+    "id": "int-006",
+    "text": "PhD in Electrical Engineering in Germany, GPA 16.5/20, IELTS 7",
+    "expected": {
+      "path_intent": "study_abroad",
+      "destination_countries": ["Germany"],
+      "field_of_study": "Electrical Engineering",
+      "target_degree": "PhD",
+      "gpa": 16.5,
+      "ielts_overall": 7.0
+    }
+  },
+  {
+    "id": "int-007",
+    "text": "چطور از کشور برم خارج؟",
+    "expected": {
+      "path_intent": "emigration_explore",
+      "valid": true
+    }
+  },
+  {
+    "id": "int-008",
+    "text": "Master in Civil Engineering in Australia",
+    "expected": {
+      "path_intent": "study_abroad",
+      "destination_countries": ["Australia"],
+      "field_of_study": "Civil Engineering & Architechture",
+      "target_degree": "Master"
+    }
+  },
+  {
+    "id": "int-009",
+    "text": "hi",
+    "expected": {
+      "valid": false,
+      "reason": "too_short"
+    }
+  },
+  {
+    "id": "int-010",
+    "text": "random pizza weather joke nothing about travel",
+    "expected": {
+      "valid": false,
+      "reason": "irrelevant"
+    }
+  },
+  {
+    "id": "int-011",
+    "text": "فارغ‌التحصیل مهندسی مکانیک، می‌خوام برای MSc برم سوئد",
+    "expected": {
+      "path_intent": "study_abroad",
+      "destination_countries": ["Sweden"],
+      "field_of_study": "Mechanical, Material & Mining Engineering",
+      "target_degree": "Master",
+      "current_status": "graduate"
+    }
+  },
+  {
+    "id": "int-012",
+    "text": "Computer Engineering & Computer Science for Master in US and Spain",
+    "expected": {
+      "path_intent": "study_abroad",
+      "destination_countries": ["United States", "Spain"],
+      "field_of_study": "Computer Engineering & Computer Science",
+      "target_degree": "Master"
+    }
+  }
+]

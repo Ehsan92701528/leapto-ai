@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leapto — پیدا کردن هم‌مسیر</title>
+  <style>
+    :root { font-family: system-ui, sans-serif; color: #1f2430; background: #f6f7fb; }
+    body { margin: 0; padding: 24px; }
+    .wrap { max-width: 760px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; margin-bottom: 8px; }
+    p.lead { color: #5a6270; margin-top: 0; }
+    form, .results { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+    label { display: block; font-weight: 600; margin: 16px 0 8px; }
+    .hint { font-weight: 400; color: #6b7280; font-size: .9rem; }
+    select, input[type=text], textarea { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #d5dae2; border-radius: 8px; font: inherit; }
+    textarea { min-height: 110px; resize: vertical; }
+    .countries { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+    .countries label { font-weight: 500; margin: 0; display: flex; gap: 8px; align-items: center; background: #f3f5f9; padding: 8px 10px; border-radius: 8px; }
+    button { margin-top: 20px; background: #2f6fed; color: #fff; border: 0; border-radius: 8px; padding: 12px 18px; font: inherit; cursor: pointer; }
+    button:disabled { opacity: .6; cursor: wait; }
+    .results { margin-top: 20px; display: none; }
+    .card { border: 1px solid #e5e8ef; border-radius: 10px; padding: 14px; margin-top: 12px; }
+    .score { color: #2f6fed; font-size: .9rem; }
+    .reasons { margin: 8px 0 0; padding-right: 18px; color: #4b5563; }
+    .error { color: #b42318; margin-top: 12px; }
+    .meta { color: #6b7280; font-size: .85rem; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>پیدا کردن هم‌مسیر من</h1>
+    <p class="lead">فرم آزمایشی — به API محلی متصل است (<code>/match</code>)</p>
+
+    <form id="intake-form">
+      <label>کجا می‌خواهید تحصیل یا کار کنید؟ <span class="hint">(یک یا چند مورد)</span></label>
+      <div class="countries" id="countries"></div>
+
+      <label for="field">رشته تحصیلی</label>
+      <select id="field" required></select>
+
+      <label for="degree">مقطع هدف</label>
+      <select id="degree" required>
+        <option value="Bachelor">Bachelor</option>
+        <option value="Master" selected>Master</option>
+        <option value="PhD">PhD</option>
+      </select>
+
+      <label for="status">وضعیت فعلی</label>
+      <select id="status" required>
+        <option value="student">دانشجو</option>
+        <option value="graduate">فارغ‌التحصیل</option>
+        <option value="working">شاغل</option>
+      </select>
+
+      <label for="origin">کشور محل تحصیل فعلی <span class="hint">(اختیاری)</span></label>
+      <input id="origin" type="text" placeholder="مثلاً ایران، هند، ..." />
+
+      <label for="languages">زبان‌ها <span class="hint">(اختیاری، با کاما جدا کنید)</span></label>
+      <input id="languages" type="text" placeholder="Persian, English" />
+
+      <label for="timeline">زمان‌بندی <span class="hint">(اختیاری)</span></label>
+      <input id="timeline" type="text" placeholder="مثلاً September 2026" />
+
+      <label for="notes">توضیحات تکمیلی</label>
+      <textarea id="notes" placeholder="هر چیزی که در سوالات بالا نیامده: زبان‌ها، آیلتس، GRE، GMAT، CFA، معدل، بودجه و ..."></textarea>
+
+      <button type="submit" id="submit-btn">پیدا کردن هم‌مسیر</button>
+      <div class="error" id="error"></div>
+    </form>
+
+    <div class="results" id="results">
+      <h2>نتایج</h2>
+      <div class="meta" id="meta"></div>
+      <div id="cards"></div>
+    </div>
+  </div>
+
+  <script>
+    const API = window.location.origin;
+
+    async function loadOptions() {
+      const res = await fetch(`${API}/options?lang=fa`);
+      const data = await res.json();
+      const countriesEl = document.getElementById('countries');
+      data.destination_countries.forEach(c => {
+        const id = `country-${c.code}`;
+        countriesEl.insertAdjacentHTML('beforeend', `
+          <label><input type="checkbox" name="country" value="${c.en}" id="${id}" /> ${c.fa}</label>
+        `);
+      });
+      const fieldEl = document.getElementById('field');
+      data.fields_of_study.forEach(f => {
+        fieldEl.insertAdjacentHTML('beforeend', `<option value="${f}">${f}</option>`);
+      });
+    }
+
+    function selectedCountries() {
+      return [...document.querySelectorAll('input[name=country]:checked')].map(el => el.value);
+    }
+
+    document.getElementById('intake-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const errorEl = document.getElementById('error');
+      const resultsEl = document.getElementById('results');
+      const cardsEl = document.getElementById('cards');
+      const metaEl = document.getElementById('meta');
+      errorEl.textContent = '';
+      cardsEl.innerHTML = '';
+      resultsEl.style.display = 'none';
+      btn.disabled = true;
+
+      const countries = selectedCountries();
+      if (!countries.length) {
+        errorEl.textContent = 'حداقل یک کشور را انتخاب کنید.';
+        btn.disabled = false;
+        return;
+      }
+
+      const langs = document.getElementById('languages').value
+        .split(',')
+        .map(s => s.trim())
+        .filter(Boolean);
+
+      const payload = {
+        intake: {
+          destination_countries: countries,
+          field_of_study: document.getElementById('field').value,
+          target_degree: document.getElementById('degree').value,
+          current_status: document.getElementById('status').value,
+          origin_country: document.getElementById('origin').value.trim() || null,
+          languages: langs.length ? langs : null,
+          timeline: document.getElementById('timeline').value.trim() || null,
+          additional_notes: document.getElementById('notes').value.trim() || null,
+        },
+        language: 'fa',
+        limit: 5,
+      };
+
+      try {
+        const res = await fetch(`${API}/match`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || 'Request failed');
+
+        metaEl.textContent = `${data.matches.length} پیشنهاد از ${data.total_after_filters} هم‌مسیر مرتبط (از ${data.total_candidates_considered} فعال)`;
+        data.matches.forEach(m => {
+          cardsEl.insertAdjacentHTML('beforeend', `
+            <div class="card">
+              <strong>${m.name}</strong>${m.name_en ? ` <span class="hint">(${m.name_en})</span>` : ''}
+              <div class="score">امتیاز: ${m.score}</div>
+              <div>${m.current_city ? m.current_city + '، ' : ''}${m.current_country_en} · ${m.degree_level}</div>
+              <div class="hint">${(m.specializations || []).join(' · ')}</div>
+              <ul class="reasons">${m.match_reasons.map(r => `<li>${r}</li>`).join('')}</ul>
+              <a href="../../horizon/fa/${m.profile_url}" target="_blank">مشاهده پروفایل و درخواست جلسه</a>
+            </div>
+          `);
+        });
+        resultsEl.style.display = 'block';
+      } catch (err) {
+        errorEl.textContent = err.message;
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    loadOptions().catch(err => {
+      document.getElementById('error').textContent = 'Could not load options: ' + err.message;
+    });
+  </script>
+</body>
+</html>

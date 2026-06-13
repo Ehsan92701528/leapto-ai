@@ -1,0 +1,51 @@
+country_code,university_name_en,title_en,degree_level,field_tag_slug,programme_url,duration_months,delivery_mode,source_url,last_verified_at,requirements_confidence
+GB,University of Edinburgh,MSc Data Science,Master,cs_data_science,https://www.ed.ac.uk/study/postgraduate,12,on_campus,https://www.ed.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Manchester,MSc Artificial Intelligence,Master,cs_data_science,https://www.manchester.ac.uk/study/postgraduate,12,on_campus,https://www.manchester.ac.uk/study/postgraduate,2026-05-01,high
+GB,Imperial College London,MSc Computer Science,Master,cs_data_science,https://www.imperial.ac.uk/study/postgraduate,12,on_campus,https://www.imperial.ac.uk/study/postgraduate,2026-05-01,high
+GB,University College London,MSc Advanced Computer Science,Master,cs_data_science,https://www.ucl.ac.uk/study/postgraduate,12,on_campus,https://www.ucl.ac.uk/study/postgraduate,2026-05-01,medium
+GB,King's College London,MSc Machine Learning,Master,cs_data_science,https://www.kcl.ac.uk/study/postgraduate,12,on_campus,https://www.kcl.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Bristol,MSc Data Analytics,Master,cs_data_science,https://www.bristol.ac.uk/study/postgraduate,12,on_campus,https://www.bristol.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Warwick,MSc Computing and Data Science,Master,cs_data_science,https://warwick.ac.uk/study/postgraduate,12,on_campus,https://warwick.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Glasgow,MSc Software Engineering,Master,cs_data_science,https://www.gla.ac.uk/study/postgraduate,12,on_campus,https://www.gla.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Birmingham,MSc Cyber Security,Master,cs_data_science,https://www.birmingham.ac.uk/study/postgraduate,12,on_campus,https://www.birmingham.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Leeds,MSc Robotics and Autonomous Systems,Master,cs_data_science,https://www.leeds.ac.uk/study/postgraduate,12,on_campus,https://www.leeds.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Sheffield,MSc Management,Master,business_mba,https://www.sheffield.ac.uk/study/postgraduate,12,on_campus,https://www.sheffield.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Nottingham,MSc Business Analytics,Master,business_mba,https://www.nottingham.ac.uk/study/postgraduate,12,on_campus,https://www.nottingham.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Southampton,MSc International Business,Master,business_mba,https://www.southampton.ac.uk/study/postgraduate,12,on_campus,https://www.southampton.ac.uk/study/postgraduate,2026-05-01,medium
+GB,Queen Mary University of London,MSc Marketing,Master,business_mba,https://www.qmul.ac.uk/study/postgraduate,12,on_campus,https://www.qmul.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Liverpool,MSc Finance and Management,Master,business_mba,https://www.liverpool.ac.uk/study/postgraduate,12,on_campus,https://www.liverpool.ac.uk/study/postgraduate,2026-05-01,high
+GB,Newcastle University,MSc Entrepreneurship,Master,business_mba,https://www.ncl.ac.uk/study/postgraduate,12,on_campus,https://www.ncl.ac.uk/study/postgraduate,2026-05-01,medium
+GB,Cardiff University,MSc Strategic Marketing,Master,business_mba,https://www.cardiff.ac.uk/study/postgraduate,12,on_campus,https://www.cardiff.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Exeter,MSc Global Business,Master,business_mba,https://www.exeter.ac.uk/study/postgraduate,12,on_campus,https://www.exeter.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of York,MSc Human Resource Management,Master,business_mba,https://www.york.ac.uk/study/postgraduate,12,on_campus,https://www.york.ac.uk/study/postgraduate,2026-05-01,medium
+GB,London School of Economics,MSc Project Management,Master,business_mba,https://www.lse.ac.uk/study/postgraduate,12,on_campus,https://www.lse.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Edinburgh,MSc Advanced Mechanical Engineering,Master,engineering_general,https://www.ed.ac.uk/study/postgraduate,12,on_campus,https://www.ed.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Manchester,MSc Electrical Power Systems,Master,engineering_general,https://www.manchester.ac.uk/study/postgraduate,12,on_campus,https://www.manchester.ac.uk/study/postgraduate,2026-05-01,medium
+GB,Imperial College London,MSc Civil Engineering,Master,engineering_general,https://www.imperial.ac.uk/study/postgraduate,12,on_campus,https://www.imperial.ac.uk/study/postgraduate,2026-05-01,high
+GB,University College London,MSc Structural Engineering,Master,engineering_general,https://www.ucl.ac.uk/study/postgraduate,12,on_campus,https://www.ucl.ac.uk/study/postgraduate,2026-05-01,high
+GB,King's College London,MSc Renewable Energy Engineering,Master,engineering_general,https://www.kcl.ac.uk/study/postgraduate,12,on_campus,https://www.kcl.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Bristol,MSc Aerospace Engineering,Master,engineering_general,https://www.bristol.ac.uk/study/postgraduate,12,on_campus,https://www.bristol.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Warwick,MSc Materials Science and Engineering,Master,engineering_general,https://warwick.ac.uk/study/postgraduate,12,on_campus,https://warwick.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Glasgow,MSc Biomedical Engineering,Master,engineering_general,https://www.gla.ac.uk/study/postgraduate,12,on_campus,https://www.gla.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Birmingham,MSc Chemical Engineering,Master,engineering_general,https://www.birmingham.ac.uk/study/postgraduate,12,on_campus,https://www.birmingham.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Leeds,MSc Engineering Management,Master,engineering_general,https://www.leeds.ac.uk/study/postgraduate,12,on_campus,https://www.leeds.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Sheffield,MSc Public Health,Master,health_public,https://www.sheffield.ac.uk/study/postgraduate,12,on_campus,https://www.sheffield.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Nottingham,MSc Global Health,Master,health_public,https://www.nottingham.ac.uk/study/postgraduate,12,on_campus,https://www.nottingham.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Southampton,MSc Health Data Science,Master,health_public,https://www.southampton.ac.uk/study/postgraduate,12,on_campus,https://www.southampton.ac.uk/study/postgraduate,2026-05-01,high
+GB,Queen Mary University of London,MSc Epidemiology,Master,health_public,https://www.qmul.ac.uk/study/postgraduate,12,on_campus,https://www.qmul.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Liverpool,MSc Health Policy,Master,health_public,https://www.liverpool.ac.uk/study/postgraduate,12,on_campus,https://www.liverpool.ac.uk/study/postgraduate,2026-05-01,high
+GB,Newcastle University,MSc Clinical Research,Master,health_public,https://www.ncl.ac.uk/study/postgraduate,12,on_campus,https://www.ncl.ac.uk/study/postgraduate,2026-05-01,high
+GB,Cardiff University,MSc Biomedical Sciences,Master,health_public,https://www.cardiff.ac.uk/study/postgraduate,12,on_campus,https://www.cardiff.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Exeter,MSc Nursing Studies,Master,health_public,https://www.exeter.ac.uk/study/postgraduate,12,on_campus,https://www.exeter.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of York,MSc Health Economics,Master,health_public,https://www.york.ac.uk/study/postgraduate,12,on_campus,https://www.york.ac.uk/study/postgraduate,2026-05-01,high
+GB,London School of Economics,MSc Medical Statistics,Master,health_public,https://www.lse.ac.uk/study/postgraduate,12,on_campus,https://www.lse.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Edinburgh,MSc Economics,Master,economics_finance,https://www.ed.ac.uk/study/postgraduate,12,on_campus,https://www.ed.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Manchester,MSc Finance,Master,economics_finance,https://www.manchester.ac.uk/study/postgraduate,12,on_campus,https://www.manchester.ac.uk/study/postgraduate,2026-05-01,high
+GB,Imperial College London,MSc Financial Economics,Master,economics_finance,https://www.imperial.ac.uk/study/postgraduate,12,on_campus,https://www.imperial.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University College London,MSc Accounting and Finance,Master,economics_finance,https://www.ucl.ac.uk/study/postgraduate,12,on_campus,https://www.ucl.ac.uk/study/postgraduate,2026-05-01,high
+GB,King's College London,MSc Banking and Finance,Master,economics_finance,https://www.kcl.ac.uk/study/postgraduate,12,on_campus,https://www.kcl.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Bristol,MSc Economics and Policy,Master,economics_finance,https://www.bristol.ac.uk/study/postgraduate,12,on_campus,https://www.bristol.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Warwick,MSc Quantitative Finance,Master,economics_finance,https://warwick.ac.uk/study/postgraduate,12,on_campus,https://warwick.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Glasgow,MSc International Finance,Master,economics_finance,https://www.gla.ac.uk/study/postgraduate,12,on_campus,https://www.gla.ac.uk/study/postgraduate,2026-05-01,high
+GB,University of Birmingham,MSc Money and Banking,Master,economics_finance,https://www.birmingham.ac.uk/study/postgraduate,12,on_campus,https://www.birmingham.ac.uk/study/postgraduate,2026-05-01,medium
+GB,University of Leeds,MSc Applied Economics,Master,economics_finance,https://www.leeds.ac.uk/study/postgraduate,12,on_campus,https://www.leeds.ac.uk/study/postgraduate,2026-05-01,high

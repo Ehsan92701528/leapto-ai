@@ -1,0 +1,85 @@
+{
+  "aliases": {
+    "ai": "Computer Engineering & Computer Science",
+    "artificial intelligence": "Computer Engineering & Computer Science",
+    "machine learning": "Computer Engineering & Computer Science",
+    "ml": "Computer Engineering & Computer Science",
+    "data science": "Computer Engineering & Computer Science",
+    "software engineering": "Computer Engineering & Computer Science",
+    "computer science": "Computer Engineering & Computer Science",
+    "informatics": "Computer Engineering & Computer Science",
+    "cybersecurity": "Computer Engineering & Computer Science",
+    "information technology": "Computer Engineering & Computer Science",
+    "it": "Computer Engineering & Computer Science",
+
+    "mba": "Management, Business & Industrial Engineering",
+    "business administration": "Management, Business & Industrial Engineering",
+    "business analytics": "Management, Business & Industrial Engineering",
+    "industrial engineering": "Management, Business & Industrial Engineering",
+    "project management": "Management, Business & Industrial Engineering",
+
+    "finance": "Economic & Financial Studies",
+    "financial studies": "Economic & Financial Studies",
+    "economics": "Economic & Financial Studies",
+    "accounting": "Economic & Financial Studies",
+
+    "biomedical": "Life Sciences & Medicine",
+    "medicine": "Life Sciences & Medicine",
+    "public health": "Life Sciences & Medicine",
+    "biotechnology": "Life Sciences & Medicine",
+    "pharmacy": "Life Sciences & Medicine",
+
+    "mechanical engineering": "Mechanical, Material & Mining Engineering",
+    "materials science": "Mechanical, Material & Mining Engineering",
+    "mining engineering": "Mechanical, Material & Mining Engineering",
+    "aerospace": "Mechanical, Material & Mining Engineering",
+
+    "civil engineering": "Civil Engineering & Architechture",
+    "architecture": "Civil Engineering & Architechture",
+    "urban planning": "Civil Engineering & Architechture",
+
+    "chemical engineering": "Chemical,Petroleum,Textile & Polymer Engineering",
+    "petroleum engineering": "Chemical,Petroleum,Textile & Polymer Engineering",
+    "polymer engineering": "Chemical,Petroleum,Textile & Polymer Engineering",
+
+    "electrical engineering": "Electrical Engineering",
+    "electronics": "Electrical Engineering",
+    "telecommunications": "Electrical Engineering",
+
+    "physics": "Natural Sciences",
+    "chemistry": "Natural Sciences",
+    "mathematics": "Natural Sciences",
+    "biology": "Natural Sciences",
+
+    "law": "Law Studies",
+    "legal studies": "Law Studies",
+
+    "humanities": "Art & Humanities",
+    "literature": "Art & Humanities",
+    "history": "Art & Humanities"
+  },
+  "related_groups": [
+    {
+      "id": "engineering_stem",
+      "fields": [
+        "Electrical Engineering",
+        "Computer Engineering & Computer Science",
+        "Chemical,Petroleum,Textile & Polymer Engineering",
+        "Civil Engineering & Architechture",
+        "Mechanical, Material & Mining Engineering"
+      ]
+    },
+    {
+      "id": "business_economics",
+      "fields": [
+        "Management, Business & Industrial Engineering",
+        "Economic & Financial Studies"
+      ]
+    },
+    {
+      "id": "sciences_health",
+      "fields": ["Natural Sciences", "Life Sciences & Medicine"]
+    }
+  ],
+  "min_field_score_to_include": 12
+}

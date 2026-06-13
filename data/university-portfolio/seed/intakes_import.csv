@@ -1,0 +1,51 @@
+country_code,university_name_en,programme_title_en,start_term,application_deadline,is_rolling,source_url,last_verified_at
+GB,University of Edinburgh,MSc Data Science,September 2026,2026-07-31,false,https://www.ed.ac.uk/study/postgraduate,2026-05-01
+GB,University of Manchester,MSc Artificial Intelligence,September 2026,2026-07-31,false,https://www.manchester.ac.uk/study/postgraduate,2026-05-01
+GB,Imperial College London,MSc Computer Science,September 2026,2026-07-31,false,https://www.imperial.ac.uk/study/postgraduate,2026-05-01
+GB,University College London,MSc Advanced Computer Science,September 2026,2026-07-31,false,https://www.ucl.ac.uk/study/postgraduate,2026-05-01
+GB,King's College London,MSc Machine Learning,September 2026,2026-07-31,false,https://www.kcl.ac.uk/study/postgraduate,2026-05-01
+GB,University of Bristol,MSc Data Analytics,September 2026,2026-07-31,false,https://www.bristol.ac.uk/study/postgraduate,2026-05-01
+GB,University of Warwick,MSc Computing and Data Science,September 2026,2026-07-31,false,https://warwick.ac.uk/study/postgraduate,2026-05-01
+GB,University of Glasgow,MSc Software Engineering,September 2026,2026-07-31,false,https://www.gla.ac.uk/study/postgraduate,2026-05-01
+GB,University of Birmingham,MSc Cyber Security,September 2026,2026-07-31,false,https://www.birmingham.ac.uk/study/postgraduate,2026-05-01
+GB,University of Leeds,MSc Robotics and Autonomous Systems,September 2026,2026-07-31,false,https://www.leeds.ac.uk/study/postgraduate,2026-05-01
+GB,University of Sheffield,MSc Management,September 2026,2026-07-31,false,https://www.sheffield.ac.uk/study/postgraduate,2026-05-01
+GB,University of Nottingham,MSc Business Analytics,September 2026,2026-07-31,false,https://www.nottingham.ac.uk/study/postgraduate,2026-05-01
+GB,University of Southampton,MSc International Business,September 2026,2026-07-31,false,https://www.southampton.ac.uk/study/postgraduate,2026-05-01
+GB,Queen Mary University of London,MSc Marketing,September 2026,2026-07-31,false,https://www.qmul.ac.uk/study/postgraduate,2026-05-01
+GB,University of Liverpool,MSc Finance and Management,September 2026,2026-07-31,false,https://www.liverpool.ac.uk/study/postgraduate,2026-05-01
+GB,Newcastle University,MSc Entrepreneurship,September 2026,2026-07-31,false,https://www.ncl.ac.uk/study/postgraduate,2026-05-01
+GB,Cardiff University,MSc Strategic Marketing,September 2026,2026-07-31,false,https://www.cardiff.ac.uk/study/postgraduate,2026-05-01
+GB,University of Exeter,MSc Global Business,September 2026,2026-07-31,false,https://www.exeter.ac.uk/study/postgraduate,2026-05-01
+GB,University of York,MSc Human Resource Management,September 2026,2026-07-31,false,https://www.york.ac.uk/study/postgraduate,2026-05-01
+GB,London School of Economics,MSc Project Management,September 2026,2026-07-31,false,https://www.lse.ac.uk/study/postgraduate,2026-05-01
+GB,University of Edinburgh,MSc Advanced Mechanical Engineering,September 2026,2026-07-31,false,https://www.ed.ac.uk/study/postgraduate,2026-05-01
+GB,University of Manchester,MSc Electrical Power Systems,September 2026,2026-07-31,false,https://www.manchester.ac.uk/study/postgraduate,2026-05-01
+GB,Imperial College London,MSc Civil Engineering,September 2026,2026-07-31,false,https://www.imperial.ac.uk/study/postgraduate,2026-05-01
+GB,University College London,MSc Structural Engineering,September 2026,2026-07-31,false,https://www.ucl.ac.uk/study/postgraduate,2026-05-01
+GB,King's College London,MSc Renewable Energy Engineering,September 2026,2026-07-31,false,https://www.kcl.ac.uk/study/postgraduate,2026-05-01
+GB,University of Bristol,MSc Aerospace Engineering,September 2026,2026-07-31,false,https://www.bristol.ac.uk/study/postgraduate,2026-05-01
+GB,University of Warwick,MSc Materials Science and Engineering,September 2026,2026-07-31,false,https://warwick.ac.uk/study/postgraduate,2026-05-01
+GB,University of Glasgow,MSc Biomedical Engineering,September 2026,2026-07-31,false,https://www.gla.ac.uk/study/postgraduate,2026-05-01
+GB,University of Birmingham,MSc Chemical Engineering,September 2026,2026-07-31,false,https://www.birmingham.ac.uk/study/postgraduate,2026-05-01
+GB,University of Leeds,MSc Engineering Management,September 2026,2026-07-31,false,https://www.leeds.ac.uk/study/postgraduate,2026-05-01
+GB,University of Sheffield,MSc Public Health,September 2026,2026-07-31,false,https://www.sheffield.ac.uk/study/postgraduate,2026-05-01
+GB,University of Nottingham,MSc Global Health,September 2026,2026-07-31,false,https://www.nottingham.ac.uk/study/postgraduate,2026-05-01
+GB,University of Southampton,MSc Health Data Science,September 2026,2026-07-31,false,https://www.southampton.ac.uk/study/postgraduate,2026-05-01
+GB,Queen Mary University of London,MSc Epidemiology,September 2026,2026-07-31,false,https://www.qmul.ac.uk/study/postgraduate,2026-05-01
+GB,University of Liverpool,MSc Health Policy,September 2026,2026-07-31,false,https://www.liverpool.ac.uk/study/postgraduate,2026-05-01
+GB,Newcastle University,MSc Clinical Research,September 2026,2026-07-31,false,https://www.ncl.ac.uk/study/postgraduate,2026-05-01
+GB,Cardiff University,MSc Biomedical Sciences,September 2026,2026-07-31,false,https://www.cardiff.ac.uk/study/postgraduate,2026-05-01
+GB,University of Exeter,MSc Nursing Studies,September 2026,2026-07-31,false,https://www.exeter.ac.uk/study/postgraduate,2026-05-01
+GB,University of York,MSc Health Economics,September 2026,2026-07-31,false,https://www.york.ac.uk/study/postgraduate,2026-05-01
+GB,London School of Economics,MSc Medical Statistics,September 2026,2026-07-31,false,https://www.lse.ac.uk/study/postgraduate,2026-05-01
+GB,University of Edinburgh,MSc Economics,September 2026,2026-07-31,false,https://www.ed.ac.uk/study/postgraduate,2026-05-01
+GB,University of Manchester,MSc Finance,September 2026,2026-07-31,false,https://www.manchester.ac.uk/study/postgraduate,2026-05-01
+GB,Imperial College London,MSc Financial Economics,September 2026,2026-07-31,false,https://www.imperial.ac.uk/study/postgraduate,2026-05-01
+GB,University College London,MSc Accounting and Finance,September 2026,2026-07-31,false,https://www.ucl.ac.uk/study/postgraduate,2026-05-01
+GB,King's College London,MSc Banking and Finance,September 2026,2026-07-31,false,https://www.kcl.ac.uk/study/postgraduate,2026-05-01
+GB,University of Bristol,MSc Economics and Policy,September 2026,2026-07-31,false,https://www.bristol.ac.uk/study/postgraduate,2026-05-01
+GB,University of Warwick,MSc Quantitative Finance,September 2026,2026-07-31,false,https://warwick.ac.uk/study/postgraduate,2026-05-01
+GB,University of Glasgow,MSc International Finance,September 2026,2026-07-31,false,https://www.gla.ac.uk/study/postgraduate,2026-05-01
+GB,University of Birmingham,MSc Money and Banking,September 2026,2026-07-31,false,https://www.birmingham.ac.uk/study/postgraduate,2026-05-01
+GB,University of Leeds,MSc Applied Economics,September 2026,2026-07-31,false,https://www.leeds.ac.uk/study/postgraduate,2026-05-01

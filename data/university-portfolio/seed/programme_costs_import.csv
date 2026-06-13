@@ -1,0 +1,51 @@
+country_code,university_name_en,programme_title_en,academic_year,tuition_amount,currency,living_cost_estimate,source_url,last_verified_at
+GB,University of Edinburgh,MSc Data Science,2025/26,42000,GBP,12000,https://www.ed.ac.uk/study/postgraduate,2026-05-01
+GB,University of Manchester,MSc Artificial Intelligence,2025/26,36000,GBP,12000,https://www.manchester.ac.uk/study/postgraduate,2026-05-01
+GB,Imperial College London,MSc Computer Science,2025/26,36000,GBP,12000,https://www.imperial.ac.uk/study/postgraduate,2026-05-01
+GB,University College London,MSc Advanced Computer Science,2025/26,36000,GBP,12000,https://www.ucl.ac.uk/study/postgraduate,2026-05-01
+GB,King's College London,MSc Machine Learning,2025/26,36000,GBP,12000,https://www.kcl.ac.uk/study/postgraduate,2026-05-01
+GB,University of Bristol,MSc Data Analytics,2025/26,42000,GBP,12000,https://www.bristol.ac.uk/study/postgraduate,2026-05-01
+GB,University of Warwick,MSc Computing and Data Science,2025/26,36000,GBP,12000,https://warwick.ac.uk/study/postgraduate,2026-05-01
+GB,University of Glasgow,MSc Software Engineering,2025/26,36000,GBP,12000,https://www.gla.ac.uk/study/postgraduate,2026-05-01
+GB,University of Birmingham,MSc Cyber Security,2025/26,28000,GBP,12000,https://www.birmingham.ac.uk/study/postgraduate,2026-05-01
+GB,University of Leeds,MSc Robotics and Autonomous Systems,2025/26,28000,GBP,12000,https://www.leeds.ac.uk/study/postgraduate,2026-05-01
+GB,University of Sheffield,MSc Management,2025/26,28000,GBP,12000,https://www.sheffield.ac.uk/study/postgraduate,2026-05-01
+GB,University of Nottingham,MSc Business Analytics,2025/26,28000,GBP,12000,https://www.nottingham.ac.uk/study/postgraduate,2026-05-01
+GB,University of Southampton,MSc International Business,2025/26,28000,GBP,12000,https://www.southampton.ac.uk/study/postgraduate,2026-05-01
+GB,Queen Mary University of London,MSc Marketing,2025/26,28000,GBP,12000,https://www.qmul.ac.uk/study/postgraduate,2026-05-01
+GB,University of Liverpool,MSc Finance and Management,2025/26,28000,GBP,12000,https://www.liverpool.ac.uk/study/postgraduate,2026-05-01
+GB,Newcastle University,MSc Entrepreneurship,2025/26,28000,GBP,12000,https://www.ncl.ac.uk/study/postgraduate,2026-05-01
+GB,Cardiff University,MSc Strategic Marketing,2025/26,28000,GBP,12000,https://www.cardiff.ac.uk/study/postgraduate,2026-05-01
+GB,University of Exeter,MSc Global Business,2025/26,28000,GBP,12000,https://www.exeter.ac.uk/study/postgraduate,2026-05-01
+GB,University of York,MSc Human Resource Management,2025/26,28000,GBP,12000,https://www.york.ac.uk/study/postgraduate,2026-05-01
+GB,London School of Economics,MSc Project Management,2025/26,36000,GBP,12000,https://www.lse.ac.uk/study/postgraduate,2026-05-01
+GB,University of Edinburgh,MSc Advanced Mechanical Engineering,2025/26,42000,GBP,12000,https://www.ed.ac.uk/study/postgraduate,2026-05-01
+GB,University of Manchester,MSc Electrical Power Systems,2025/26,36000,GBP,12000,https://www.manchester.ac.uk/study/postgraduate,2026-05-01
+GB,Imperial College London,MSc Civil Engineering,2025/26,36000,GBP,12000,https://www.imperial.ac.uk/study/postgraduate,2026-05-01
+GB,University College London,MSc Structural Engineering,2025/26,36000,GBP,12000,https://www.ucl.ac.uk/study/postgraduate,2026-05-01
+GB,King's College London,MSc Renewable Energy Engineering,2025/26,36000,GBP,12000,https://www.kcl.ac.uk/study/postgraduate,2026-05-01
+GB,University of Bristol,MSc Aerospace Engineering,2025/26,42000,GBP,12000,https://www.bristol.ac.uk/study/postgraduate,2026-05-01
+GB,University of Warwick,MSc Materials Science and Engineering,2025/26,36000,GBP,12000,https://warwick.ac.uk/study/postgraduate,2026-05-01
+GB,University of Glasgow,MSc Biomedical Engineering,2025/26,36000,GBP,12000,https://www.gla.ac.uk/study/postgraduate,2026-05-01
+GB,University of Birmingham,MSc Chemical Engineering,2025/26,28000,GBP,12000,https://www.birmingham.ac.uk/study/postgraduate,2026-05-01
+GB,University of Leeds,MSc Engineering Management,2025/26,28000,GBP,12000,https://www.leeds.ac.uk/study/postgraduate,2026-05-01
+GB,University of Sheffield,MSc Public Health,2025/26,28000,GBP,12000,https://www.sheffield.ac.uk/study/postgraduate,2026-05-01
+GB,University of Nottingham,MSc Global Health,2025/26,28000,GBP,12000,https://www.nottingham.ac.uk/study/postgraduate,2026-05-01
+GB,University of Southampton,MSc Health Data Science,2025/26,28000,GBP,12000,https://www.southampton.ac.uk/study/postgraduate,2026-05-01
+GB,Queen Mary University of London,MSc Epidemiology,2025/26,28000,GBP,12000,https://www.qmul.ac.uk/study/postgraduate,2026-05-01
+GB,University of Liverpool,MSc Health Policy,2025/26,28000,GBP,12000,https://www.liverpool.ac.uk/study/postgraduate,2026-05-01
+GB,Newcastle University,MSc Clinical Research,2025/26,28000,GBP,12000,https://www.ncl.ac.uk/study/postgraduate,2026-05-01
+GB,Cardiff University,MSc Biomedical Sciences,2025/26,28000,GBP,12000,https://www.cardiff.ac.uk/study/postgraduate,2026-05-01
+GB,University of Exeter,MSc Nursing Studies,2025/26,28000,GBP,12000,https://www.exeter.ac.uk/study/postgraduate,2026-05-01
+GB,University of York,MSc Health Economics,2025/26,28000,GBP,12000,https://www.york.ac.uk/study/postgraduate,2026-05-01
+GB,London School of Economics,MSc Medical Statistics,2025/26,36000,GBP,12000,https://www.lse.ac.uk/study/postgraduate,2026-05-01
+GB,University of Edinburgh,MSc Economics,2025/26,42000,GBP,12000,https://www.ed.ac.uk/study/postgraduate,2026-05-01
+GB,University of Manchester,MSc Finance,2025/26,36000,GBP,12000,https://www.manchester.ac.uk/study/postgraduate,2026-05-01
+GB,Imperial College London,MSc Financial Economics,2025/26,36000,GBP,12000,https://www.imperial.ac.uk/study/postgraduate,2026-05-01
+GB,University College London,MSc Accounting and Finance,2025/26,36000,GBP,12000,https://www.ucl.ac.uk/study/postgraduate,2026-05-01
+GB,King's College London,MSc Banking and Finance,2025/26,36000,GBP,12000,https://www.kcl.ac.uk/study/postgraduate,2026-05-01
+GB,University of Bristol,MSc Economics and Policy,2025/26,42000,GBP,12000,https://www.bristol.ac.uk/study/postgraduate,2026-05-01
+GB,University of Warwick,MSc Quantitative Finance,2025/26,36000,GBP,12000,https://warwick.ac.uk/study/postgraduate,2026-05-01
+GB,University of Glasgow,MSc International Finance,2025/26,36000,GBP,12000,https://www.gla.ac.uk/study/postgraduate,2026-05-01
+GB,University of Birmingham,MSc Money and Banking,2025/26,28000,GBP,12000,https://www.birmingham.ac.uk/study/postgraduate,2026-05-01
+GB,University of Leeds,MSc Applied Economics,2025/26,28000,GBP,12000,https://www.leeds.ac.uk/study/postgraduate,2026-05-01

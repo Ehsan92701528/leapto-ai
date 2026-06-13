@@ -1,0 +1,4 @@
+country_code,university_name_en,programme_title_en,min_ielts_overall,min_toefl_ibt,min_gpa_4,min_gpa_20,gre_required,gmat_required,work_experience_years_min,entry_notes_en,source_url,last_verified_at
+GB,University of Edinburgh,MSc Data Science,6.5,92,3.0,14.0,false,false,,Honours degree in informatics or related field,https://www.ed.ac.uk/studying/postgraduate/degrees/index.php?r=site/view&edition=2026&id=950,2026-05-01
+GB,University of Manchester,MSc Data Science,7.0,100,3.3,15.0,false,false,,Upper second-class honours or equivalent,https://www.manchester.ac.uk/study/masters/courses/list/08567/msc-data-science/,2026-05-01
+GB,Imperial College London,MSc Statistics (Data Science),7.0,100,3.5,16.0,false,false,,Strong quantitative background required,https://www.imperial.ac.uk/study/courses/postgraduate-taught/statistics-data-science/,2026-05-01

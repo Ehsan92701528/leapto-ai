@@ -1,0 +1,19 @@
+[Unit]
+Description=Leapto AI Path Mate API (uvicorn)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/srv/leapto/leapto-ai/api/pathmate-matcher
+Environment=PATH=/srv/leapto/leapto-ai/api/pathmate-matcher/.venv/bin
+ExecStart=/srv/leapto/leapto-ai/api/pathmate-matcher/.venv/bin/python -m uvicorn main:app --host 127.0.0.1 --port 8080
+Restart=on-failure
+RestartSec=5
+
+# Optional: load LLM key from file (chmod 600)
+# EnvironmentFile=/srv/leapto/leapto-ai/api/pathmate-matcher/.env
+
+[Install]
+WantedBy=multi-user.target

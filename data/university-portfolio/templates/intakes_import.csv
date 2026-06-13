@@ -1,0 +1,4 @@
+country_code,university_name_en,programme_title_en,start_term,application_deadline,is_rolling,source_url,last_verified_at
+GB,University of Edinburgh,MSc Data Science,September 2026,2026-05-31,false,https://www.ed.ac.uk/studying/postgraduate/degrees/index.php?r=site/view&edition=2026&id=950,2026-05-01
+GB,University of Manchester,MSc Data Science,September 2026,2026-07-31,false,https://www.manchester.ac.uk/study/masters/courses/list/08567/msc-data-science/,2026-05-01
+GB,Imperial College London,MSc Statistics (Data Science),September 2026,2026-07-31,false,https://www.imperial.ac.uk/study/courses/postgraduate-taught/statistics-data-science/,2026-05-01

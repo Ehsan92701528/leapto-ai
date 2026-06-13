@@ -1,0 +1,4 @@
+country_code,university_name_en,programme_title_en,academic_year,tuition_amount,currency,living_cost_estimate,source_url,last_verified_at
+GB,University of Edinburgh,MSc Data Science,2025/26,39300,GBP,12000,https://www.ed.ac.uk/studying/postgraduate/degrees/index.php?r=site/view&edition=2026&id=950,2026-05-01
+GB,University of Manchester,MSc Data Science,2025/26,34000,GBP,11000,https://www.manchester.ac.uk/study/masters/courses/list/08567/msc-data-science/,2026-05-01
+GB,Imperial College London,MSc Statistics (Data Science),2025/26,41250,GBP,15000,https://www.imperial.ac.uk/study/courses/postgraduate-taught/statistics-data-science/,2026-05-01

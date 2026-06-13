@@ -1,0 +1,40 @@
+{
+  "destination_countries": [
+    { "code": "DE", "en": "Germany", "fa": "آلمان" },
+    { "code": "US", "en": "United States", "fa": "آمریکا" },
+    { "code": "ES", "en": "Spain", "fa": "اسپانیا" },
+    { "code": "AU", "en": "Australia", "fa": "استرالیا" },
+    { "code": "GB", "en": "United Kingdom", "fa": "انگلیس" },
+    { "code": "IT", "en": "Italy", "fa": "ایتالیا" },
+    { "code": "TR", "en": "Turkey", "fa": "ترکیه" },
+    { "code": "AT", "en": "Austria", "fa": "اتریش" },
+    { "code": "SE", "en": "Sweden", "fa": "سوئد" },
+    { "code": "CH", "en": "Switzerland", "fa": "سوئیس" },
+    { "code": "FR", "en": "France", "fa": "فرانسه" },
+    { "code": "FI", "en": "Finland", "fa": "فنلاند" },
+    { "code": "CA", "en": "Canada", "fa": "کانادا" },
+    { "code": "NZ", "en": "New Zealand", "fa": "نیوزلند" },
+    { "code": "NL", "en": "Netherlands", "fa": "هلند" },
+    { "code": "KR", "en": "South Korea", "fa": "کره‌جنوبی" }
+  ],
+  "fields_of_study": [
+    "Electrical Engineering",
+    "Computer Engineering & Computer Science",
+    "Chemical,Petroleum,Textile & Polymer Engineering",
+    "Civil Engineering & Architechture",
+    "Mechanical, Material & Mining Engineering",
+    "Management, Business & Industrial Engineering",
+    "Economic & Financial Studies",
+    "Natural Sciences",
+    "Art & Humanities",
+    "Life Sciences & Medicine",
+    "Law Studies"
+  ],
+  "target_degrees": ["Bachelor", "Master", "PhD"],
+  "current_statuses": [
+    { "value": "student", "label_en": "Student", "label_fa": "دانشجو" },
+    { "value": "graduate", "label_en": "Graduate", "label_fa": "فارغ‌التحصیل" },
+    { "value": "working", "label_en": "Working professional", "label_fa": "شاغل" }
+  ],
+  "common_exams_hint": ["IELTS", "TOEFL", "GRE", "GMAT", "CFA", "PTE", "Duolingo"]
+}

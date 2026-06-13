@@ -1,0 +1,338 @@
+{
+  "$defs": {
+    "BudgetCurrency": {
+      "enum": [
+        "GBP",
+        "USD",
+        "EUR",
+        "CAD",
+        "AUD"
+      ],
+      "title": "BudgetCurrency",
+      "type": "string"
+    },
+    "CurrentStatus": {
+      "enum": [
+        "student",
+        "graduate",
+        "working"
+      ],
+      "title": "CurrentStatus",
+      "type": "string"
+    },
+    "GpaScale": {
+      "description": "Scale used for ``gpa`` (Iranian transcripts often use /20).",
+      "enum": [
+        "4.0",
+        "20",
+        "100",
+        "other"
+      ],
+      "title": "GpaScale",
+      "type": "string"
+    },
+    "TargetDegree": {
+      "enum": [
+        "Bachelor",
+        "Master",
+        "PhD"
+      ],
+      "title": "TargetDegree",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Candidate profile collected before path-mate or programme portfolio matching.\n\nCore fields are required for mentor matching. Academic scores and budget support\nprogramme hard-filters in ``POST /portfolio/match`` (Phase C).",
+  "properties": {
+    "destination_countries": {
+      "description": "One or more countries where the candidate wants to study or work.",
+      "examples": [
+        [
+          "United Kingdom",
+          "Canada"
+        ]
+      ],
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 5,
+      "minItems": 1,
+      "title": "Destination Countries",
+      "type": "array",
+      "ui_label_en": "Where do you want to study/work?",
+      "ui_label_fa": "کجا می‌خواهید تحصیل یا کار کنید؟"
+    },
+    "field_of_study": {
+      "description": "Primary field of study. Prefer Leapto homepage categories, but free text is accepted — the matcher will map aliases and close/related fields.",
+      "examples": [
+        "Computer Engineering & Computer Science"
+      ],
+      "maxLength": 200,
+      "minLength": 2,
+      "title": "Field Of Study",
+      "type": "string",
+      "ui_label_en": "Field of study",
+      "ui_label_fa": "رشته تحصیلی"
+    },
+    "target_degree": {
+      "$ref": "#/$defs/TargetDegree",
+      "description": "Degree level the candidate is aiming for.",
+      "ui_label_en": "Target degree",
+      "ui_label_fa": "مقطع هدف"
+    },
+    "current_status": {
+      "$ref": "#/$defs/CurrentStatus",
+      "description": "Current situation of the candidate.",
+      "ui_label_en": "Current status",
+      "ui_label_fa": "وضعیت فعلی"
+    },
+    "origin_country": {
+      "anyOf": [
+        {
+          "maxLength": 100,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Country where the candidate studied or is studying now.",
+      "examples": [
+        "Iran",
+        "India"
+      ],
+      "title": "Origin Country",
+      "ui_label_en": "Origin / current university country (optional)",
+      "ui_label_fa": "کشور محل تحصیل فعلی (اختیاری)"
+    },
+    "languages": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Spoken or tested languages, e.g. English, Persian, French.",
+      "examples": [
+        [
+          "Persian",
+          "English"
+        ]
+      ],
+      "title": "Languages",
+      "ui_label_en": "Languages (optional)",
+      "ui_label_fa": "زبان‌ها (اختیاری)"
+    },
+    "timeline": {
+      "anyOf": [
+        {
+          "maxLength": 120,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "When they plan to apply or start, e.g. 'September 2026' or 'within 12 months'.",
+      "examples": [
+        "September 2026",
+        "within 12 months"
+      ],
+      "title": "Timeline",
+      "ui_label_en": "Timeline (optional)",
+      "ui_label_fa": "زمان‌بندی (اختیاری)"
+    },
+    "gpa": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Grade point average on the scale given by ``gpa_scale``.",
+      "examples": [
+        17.0,
+        3.6
+      ],
+      "title": "Gpa",
+      "ui_label_en": "GPA",
+      "ui_label_fa": "معدل"
+    },
+    "gpa_scale": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/GpaScale"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Scale for ``gpa``: 4.0, 20 (Iran), 100, or other.",
+      "ui_label_en": "GPA scale",
+      "ui_label_fa": "مقیاس معدل"
+    },
+    "ielts_overall": {
+      "anyOf": [
+        {
+          "maximum": 9,
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "IELTS overall band score.",
+      "examples": [
+        7.0
+      ],
+      "title": "Ielts Overall",
+      "ui_label_en": "IELTS overall",
+      "ui_label_fa": "نمره کلی آیلتس"
+    },
+    "toefl_ibt": {
+      "anyOf": [
+        {
+          "maximum": 120,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "TOEFL iBT total score.",
+      "title": "Toefl Ibt",
+      "ui_label_en": "TOEFL iBT",
+      "ui_label_fa": "تافل iBT"
+    },
+    "gre_total": {
+      "anyOf": [
+        {
+          "maximum": 340,
+          "minimum": 260,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "GRE total score (verbal + quantitative).",
+      "title": "Gre Total",
+      "ui_label_en": "GRE total",
+      "ui_label_fa": "GRE"
+    },
+    "gmat_score": {
+      "anyOf": [
+        {
+          "maximum": 800,
+          "minimum": 200,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "GMAT total score.",
+      "title": "Gmat Score",
+      "ui_label_en": "GMAT",
+      "ui_label_fa": "GMAT"
+    },
+    "budget_max_yearly": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Maximum affordable tuition + living cost per year.",
+      "examples": [
+        25000
+      ],
+      "title": "Budget Max Yearly",
+      "ui_label_en": "Max budget per year",
+      "ui_label_fa": "حداکثر بودجه سالانه"
+    },
+    "budget_currency": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/BudgetCurrency"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Currency for ``budget_max_yearly``.",
+      "ui_label_en": "Budget currency",
+      "ui_label_fa": "واحد بودجه"
+    },
+    "preferred_start": {
+      "anyOf": [
+        {
+          "maxLength": 80,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Preferred intake, e.g. 'September 2026'.",
+      "examples": [
+        "September 2026"
+      ],
+      "title": "Preferred Start",
+      "ui_label_en": "Preferred start term",
+      "ui_label_fa": "ترم شروع مد نظر"
+    },
+    "additional_notes": {
+      "anyOf": [
+        {
+          "maxLength": 2000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Free text for anything not covered above: spoken languages, standard exams (GMAT, GRE, CFA, IELTS, TOEFL, etc.), GPA, budget, or other context.",
+      "title": "Additional Notes",
+      "ui_label_en": "Describe your situation (2–3 sentences)",
+      "ui_label_fa": "وضعیت خود را توضیح دهید (۲–۳ جمله)",
+      "ui_placeholder_en": "Example: GPA 3.6, IELTS 7.0, interested in AI/ML MSc, budget around £25k/year...",
+      "ui_placeholder_fa": "مثال: معدل ۱۷، آیلتس ۷، علاقه‌مند به کارشناسی ارشد هوش مصنوعی، بودجه حدود ..."
+    }
+  },
+  "required": [
+    "destination_countries",
+    "field_of_study",
+    "target_degree",
+    "current_status"
+  ],
+  "title": "StudentIntake",
+  "type": "object"
+}

@@ -1,0 +1,45 @@
+[
+  {
+    "id": "rag-001",
+    "question": "UK MSc computer science IELTS 6.5 under £40000",
+    "expect_abstain": false,
+    "expect_programme_ids_min": 1
+  },
+  {
+    "id": "rag-002",
+    "question": "MSc Artificial Intelligence UK IELTS 6.5 budget £50000",
+    "expect_abstain": false,
+    "expect_programme_ids_min": 1
+  },
+  {
+    "id": "rag-003",
+    "question": "programmes on Mars with IELTS 9.9",
+    "expect_abstain": true,
+    "expect_programme_ids_min": 0
+  },
+  {
+    "id": "rag-004",
+    "question": "UK master data science tuition under £45000",
+    "expect_abstain": false,
+    "expect_programme_ids_min": 1
+  },
+  {
+    "id": "rag-005",
+    "question": "انگلیس ارشد کامپیوتر آیلتس ۶.۵ بودجه £35000",
+    "expect_abstain": false,
+    "expect_programme_ids_min": 1
+  },
+  {
+    "id": "rag-006",
+    "question": "MSc computer science Spain IELTS 6.5 under €20000",
+    "expect_abstain": false,
+    "expect_programme_ids_min": 1
+  },
+  {
+    "id": "rag-007",
+    "question": "پرسیدن",
+    "language": "fa",
+    "expect_abstain": true,
+    "expect_programme_ids_min": 0
+  }
+]

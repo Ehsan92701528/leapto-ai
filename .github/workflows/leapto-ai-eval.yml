@@ -1,0 +1,31 @@
+name: Leapto AI eval
+
+on:
+  push:
+    paths:
+      - "api/pathmate-matcher/**"
+      - "data/university-portfolio/**"
+  pull_request:
+    paths:
+      - "api/pathmate-matcher/**"
+      - "data/university-portfolio/**"
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api/pathmate-matcher
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build portfolio cache
+        run: python3 ../../data/university-portfolio/scripts/build_global_portfolio_cache.py
+      - name: Run AI eval gates
+        run: python3 eval/run_eval.py --suite all
+      - name: Smoke test match API
+        run: python3 scripts/smoke_test.py
