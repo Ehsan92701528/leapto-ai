@@ -25,6 +25,12 @@ jobs:
         run: pip install -r requirements.txt
       - name: Build portfolio cache
         run: python3 ../../data/university-portfolio/scripts/build_global_portfolio_cache.py
+      - name: Validate verified UK Master's 2027 workspace
+        run: python3 ../../data/university-portfolio/scripts/verify_uk_masters_2027.py
+      - name: Test verified catalogue publishing gate
+        run: python3 ../../data/university-portfolio/scripts/test_verify_uk_masters_2027.py
+      - name: Test planning catalogue safeguards
+        run: python3 ../../data/university-portfolio/scripts/test_planning_uk_masters_2027.py
       - name: Run AI eval gates
         run: python3 eval/run_eval.py --suite all
       - name: Smoke test match API

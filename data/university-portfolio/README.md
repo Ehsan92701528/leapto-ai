@@ -1,5 +1,22 @@
 # University portfolio data
 
+## Current production-data work — UK taught Master's 2027
+
+The candidate-facing replacement for the synthetic cache is under
+[`verified_2027/`](verified_2027/). It defines a 40-university collection
+scope, five subject families and a fail-closed publishing gate for September
+2027 courses.
+
+The existing 3,060-row global cache remains development/demo data. Do not
+describe its fees, deadlines or requirements as verified.
+
+Validate the new catalogue workspace:
+
+```bash
+python3 scripts/verify_uk_masters_2027.py --as-of 2026-08-15
+python3 scripts/test_verify_uk_masters_2027.py
+```
+
 ## Global cache — 320 programmes (GB, DE, CA, AU)
 
 ```bash

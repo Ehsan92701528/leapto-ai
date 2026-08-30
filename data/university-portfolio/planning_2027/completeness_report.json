@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-08-15T13:46:21.482176+00:00",
+  "programmes": 897,
+  "universities": 14,
+  "with_verified_international_tuition": 0,
+  "with_unreviewed_tuition_candidate": 475,
+  "with_ielts": 431,
+  "with_published_start_term": 818,
+  "subject_family_counts": {
+    "business-management-finance": 263,
+    "computing-data-ai": 137,
+    "health-life-sciences": 181,
+    "economics-social-policy": 121,
+    "engineering-technology": 195
+  },
+  "university_counts": {
+    "Newcastle University": 81,
+    "Swansea University": 50,
+    "University College London": 200,
+    "University of Bristol": 55,
+    "University of Cambridge": 46,
+    "University of Liverpool": 1,
+    "University of Manchester": 73,
+    "University of Nottingham": 9,
+    "University of Sheffield": 58,
+    "University of Southampton": 78,
+    "University of Strathclyde": 124,
+    "University of Sussex": 51,
+    "University of Warwick": 67,
+    "University of York": 4
+  }
+}

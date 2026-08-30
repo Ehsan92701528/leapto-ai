@@ -1,0 +1,29 @@
+{
+  "catalogue_version": "uk-taught-masters-2027-v1",
+  "country_code": "GB",
+  "degree_level": "Master",
+  "delivery_mode": "on_campus",
+  "target_intake": "September 2027",
+  "academic_year": "2027/28",
+  "currency": "GBP",
+  "maximum_verification_age_days": 120,
+  "target_programme_count": 1000,
+  "target_university_count_min": 30,
+  "target_university_count_max": 40,
+  "subject_families": [
+    "computing-data-ai",
+    "business-management-finance",
+    "engineering-technology",
+    "health-life-sciences",
+    "economics-social-policy"
+  ],
+  "publication_rules": {
+    "official_university_sources_only": true,
+    "programme_specific_url_required": true,
+    "confirmed_2027_intake_required": true,
+    "confirmed_international_tuition_required": true,
+    "entry_requirements_source_required": true,
+    "expired_deadlines_rejected": true,
+    "synthetic_or_inferred_values_rejected": true
+  }
+}

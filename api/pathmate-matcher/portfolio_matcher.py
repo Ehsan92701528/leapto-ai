@@ -14,6 +14,7 @@ from schemas.portfolio import PortfolioBuckets, PortfolioMatchResponse, Programm
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CACHE_DIR = REPO_ROOT / "data" / "university-portfolio" / "cache"
 GLOBAL_CACHE_PATH = CACHE_DIR / "portfolio_global_msc.json"
+PLANNING_2027_CACHE_PATH = CACHE_DIR / "portfolio_gb_msc_planning_2027.json"
 LEGACY_CACHE_PATH = CACHE_DIR / "portfolio_gb_msc.json"
 
 COUNTRY_ALIASES = {
@@ -76,6 +77,10 @@ def load_programmes() -> tuple[list[dict[str, Any]], str]:
     rows = fetch_programme_rows()
     if rows:
         return rows, "postgres"
+    if PLANNING_2027_CACHE_PATH.exists():
+        planning_rows = _load_json_cache(PLANNING_2027_CACHE_PATH)
+        if planning_rows:
+            return planning_rows, "json_cache_uk_planning_2027"
     if GLOBAL_CACHE_PATH.exists():
         return _load_json_cache(GLOBAL_CACHE_PATH), "json_cache_global"
     if LEGACY_CACHE_PATH.exists():

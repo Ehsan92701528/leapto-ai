@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<title>Leapto AI System Architecture</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Georgia, serif; max-width: 820px; margin: 36px auto; line-height: 1.55; color: #111; padding: 0 24px; }
+h1 { font-size: 1.75rem; border-bottom: 2px solid #333; padding-bottom: 8px; }
+h2 { font-size: 1.25rem; margin-top: 1.6em; color: #222; }
+h3 { font-size: 1.05rem; }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; margin: 1em 0; }
+th, td { border: 1px solid #bbb; padding: 8px 10px; text-align: left; vertical-align: top; }
+th { background: #f5f5f5; }
+code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-size: 0.9em; }
+pre { background: #f4f4f4; padding: 14px; overflow-x: auto; font-size: 0.85em; }
+pre code { background: none; padding: 0; }
+hr { border: none; border-top: 1px solid #ccc; margin: 2em 0; }
+@media print { body { margin: 12mm; max-width: none; } a { color: #000; text-decoration: none; } }
+</style></head><body><h1 id="leapto-ai-platform-system-architecture-document">Leapto AI Platform — System Architecture Document</h1>
+<p><strong>Document type:</strong> Technical architecture (current state + planned evolution)<br />
+<strong>Organisation:</strong> Leapto (leapto.co.uk)<br />
+<strong>Version:</strong> 1.0<br />
+<strong>Date:</strong> 28 May 2026<br />
+<strong>Classification:</strong> For official use — visa / business endorsement supporting material<br />
+<strong>Repositories:</strong><br />
+- Website &amp; widget: <code>github.com/Ehsan92701528/horizon</code><br />
+- AI API &amp; data: <code>github.com/Ehsan92701528/leapto-ai</code> (planned / in deployment)</p>
+<hr />
+<h2 id="1-executive-summary">1. Executive summary</h2>
+<p>Leapto is a <strong>peer-mentoring and international education planning platform</strong> serving Persian- and English-speaking students who wish to study or work abroad. The platform connects users with <strong>path mates</strong> (mentors who have already completed similar journeys) and helps them explore <strong>university programmes</strong> using structured, verifiable data.</p>
+<p>This document describes:</p>
+<ol>
+<li><strong>What is live or in active development today</strong> (May 2026)  </li>
+<li><strong>How the system is deployed</strong> on a single production server  </li>
+<li><strong>The planned evolution</strong> toward a full programme/university database and a governed conversational AI layer  </li>
+</ol>
+<p>The architecture is designed to be <strong>safe, explainable, and commercially viable</strong>: AI assists discovery and matching; <strong>humans remain responsible</strong> for mentoring sessions, applications, and any legal or immigration matters.</p>
+<hr />
+<h2 id="2-business-context">2. Business context</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Primary market</strong></td>
+<td>Students planning Master’s and other post-secondary study abroad (initial focus: UK, Canada, Germany, and other English/European destinations)</td>
+</tr>
+<tr>
+<td><strong>Core proposition</strong></td>
+<td>“Talk to someone who has already walked your path” + data-backed programme shortlists</td>
+</tr>
+<tr>
+<td><strong>Revenue model (current &amp; planned)</strong></td>
+<td>Mentor session bookings, advisory packages, application support (via existing Leapto commerce / VBO integration)</td>
+</tr>
+<tr>
+<td><strong>Languages</strong></td>
+<td>Persian (Farsi) and English</td>
+</tr>
+<tr>
+<td><strong>Regulatory sensitivity</strong></td>
+<td>Platform <strong>does not</strong> provide visa or immigration legal advice via AI; users are directed to qualified mentors or official sources</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3-high-level-system-context">3. High-level system context</h2>
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Users
+        STU[Student / prospect]
+    end
+
+    subgraph Production[&quot;Single production server (same IP)&quot;]
+        WEB[Static website&lt;br/&gt;leapto.co.uk]
+        NGX[Reverse proxy&lt;br/&gt;nginx]
+        API[Leapto AI API&lt;br/&gt;FastAPI / uvicorn]
+    end
+
+    subgraph Data[&quot;Data layer (API server)&quot;]
+        MENT[(Mentor corpus&lt;br/&gt;JSON / future DB)]
+        PROG[(Programme corpus&lt;br/&gt;JSON cache → PostgreSQL)]
+    end
+
+    subgraph External[&quot;External services (optional / planned)&quot;]
+        LLM[LLM provider&lt;br/&gt;OpenAI-compatible]
+        PAY[Stripe payments]
+        ACC[Xero accounting]
+        CRM[Attio / ops tools]
+    end
+
+    STU --&gt; WEB
+    STU --&gt; NGX
+    WEB --&gt;|HTTPS API calls| NGX
+    NGX --&gt; API
+    API --&gt; MENT
+    API --&gt; PROG
+    API -.-&gt;|optional| LLM
+    API -.-&gt;|planned| PAY
+    PAY -.-&gt; ACC
+</code></pre>
+<p><strong>Key point for hosting:</strong> The public website and the API run on the <strong>same physical or virtual server</strong>. DNS routes <code>leapto.co.uk</code> to static files and <code>api.leapto.co.uk</code> to the API process. No second server is required at this stage.</p>
+<hr />
+<h2 id="4-current-architecture-may-2026-implemented">4. Current architecture (May 2026 — implemented)</h2>
+<h3 id="41-logical-layers">4.1 Logical layers</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Technology</th>
+<th>Repository</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Presentation</strong></td>
+<td>Static HTML, Bootstrap, jQuery; bilingual FA/EN</td>
+<td><code>horizon</code></td>
+<td>Deployed via FTP CI to leapto.co.uk</td>
+</tr>
+<tr>
+<td><strong>Path-mate widget</strong></td>
+<td>JavaScript modal (<code>pathmate-finder.js</code>)</td>
+<td><code>horizon</code></td>
+<td>Deployed; calls API when configured</td>
+</tr>
+<tr>
+<td><strong>Application API</strong></td>
+<td>Python 3, FastAPI, uvicorn</td>
+<td><code>leapto-ai</code></td>
+<td>Built; deployment to api.leapto.co.uk in progress</td>
+</tr>
+<tr>
+<td><strong>Matching &amp; AI services</strong></td>
+<td>Rule-based engines + optional LLM</td>
+<td><code>leapto-ai</code></td>
+<td>Operational in dev/staging</td>
+</tr>
+<tr>
+<td><strong>Data</strong></td>
+<td>JSON files (mentors, programme cache)</td>
+<td><code>leapto-ai</code></td>
+<td>214+ active mentors; 3,060 MSc programme records (seed)</td>
+</tr>
+<tr>
+<td><strong>Quality assurance</strong></td>
+<td>Automated eval harness + GitHub Actions</td>
+<td><code>leapto-ai</code></td>
+<td>CI gates on intake and RAG gold sets</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-current-user-journey-technical-flow">4.2 Current user journey (technical flow)</h3>
+<pre><code class="language-mermaid">sequenceDiagram
+    participant U as User browser
+    participant W as leapto.co.uk (static)
+    participant A as api.leapto.co.uk
+    participant M as Mentor matcher
+    participant P as Portfolio matcher
+    participant C as Programme chat / RAG
+
+    U-&gt;&gt;W: Open site (FA or EN)
+    U-&gt;&gt;W: Launch path-mate widget
+    W-&gt;&gt;A: POST /ai/extract (optional)
+    A--&gt;&gt;W: Structured StudentIntake
+    Note over U,W: Conversational wizard (chips + free text)
+    W-&gt;&gt;A: POST /match
+    A-&gt;&gt;M: Score mentors by country, field, degree
+    M--&gt;&gt;A: Top 5 path mates + reasons
+    A--&gt;&gt;W: Match results
+    U-&gt;&gt;W: Tab &quot;Universities &amp; programmes&quot;
+    W-&gt;&gt;A: POST /portfolio/match
+    A-&gt;&gt;P: Reach / match / safety buckets
+    P--&gt;&gt;W: Programme shortlists
+    W-&gt;&gt;A: POST /ai/chat/programmes
+    A-&gt;&gt;C: Grounded retrieval + clarify / off-topic handling
+    C--&gt;&gt;W: Answer + citations + URLs
+    U-&gt;&gt;W: View mentor profile → book session (existing Leapto flow)
+</code></pre>
+<h3 id="43-api-endpoints-current">4.3 API endpoints (current)</h3>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/health</code>, <code>/health/ai</code>, <code>/health/portfolio</code></td>
+<td>GET</td>
+<td>Service and data readiness</td>
+</tr>
+<tr>
+<td><code>/options</code></td>
+<td>GET</td>
+<td>Form options (countries, fields) by language</td>
+</tr>
+<tr>
+<td><code>/ai/extract</code></td>
+<td>POST</td>
+<td>Free text → structured student intake</td>
+</tr>
+<tr>
+<td><code>/match</code></td>
+<td>POST</td>
+<td>Path-mate (mentor) recommendations</td>
+</tr>
+<tr>
+<td><code>/portfolio/match</code></td>
+<td>POST</td>
+<td>University programme buckets (reach/match/safety)</td>
+</tr>
+<tr>
+<td><code>/ai/rag/programmes</code></td>
+<td>POST</td>
+<td>Legacy programme Q&amp;A (grounded)</td>
+</tr>
+<tr>
+<td><code>/ai/chat/programmes</code></td>
+<td>POST</td>
+<td>Conversational programme chat with history</td>
+</tr>
+<tr>
+<td><code>/schema/student-intake</code></td>
+<td>GET</td>
+<td>JSON schema for intake contract</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-data-architecture-current">4.4 Data architecture (current)</h3>
+<pre><code class="language-mermaid">flowchart LR
+    subgraph Sources
+        HTML[Mentor profile pages&lt;br/&gt;horizon FA/EN HTML]
+        SEED[Curated programme seed&lt;br/&gt;+ university lists]
+    end
+
+    subgraph Pipeline
+        EXP[mentor-export script]
+        BUILD[portfolio cache builder]
+    end
+
+    subgraph Runtime
+        MFA[mentors.fa.json / mentors.en.json]
+        CACHE[portfolio_global_msc.json]
+        API2[FastAPI loaders]
+    end
+
+    HTML --&gt; EXP --&gt; MFA
+    SEED --&gt; BUILD --&gt; CACHE
+    MFA --&gt; API2
+    CACHE --&gt; API2
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Current scale</th>
+<th>Format</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mentors</td>
+<td>214 active (262 EN profiles exported)</td>
+<td>JSON</td>
+<td>Names, countries, fields, education, work history</td>
+</tr>
+<tr>
+<td>Programmes</td>
+<td><strong>3,060</strong> MSc records</td>
+<td>JSON cache</td>
+<td><strong>2,500 UK</strong> + 560 other countries (DE, CA, US, AU, ES, IT, NL)</td>
+</tr>
+<tr>
+<td>Programme fields</td>
+<td>Structured</td>
+<td>Per row</td>
+<td>tuition, min IELTS, GPA, URLs, <code>last_verified_at</code></td>
+</tr>
+<tr>
+<td>Student intake</td>
+<td>Per session</td>
+<td><code>StudentIntake</code> schema</td>
+<td>Shared contract across UI, AI, matchers</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important:</strong> Current programme rows include <strong>seed/synthetic diversity</strong> for product development. Production roadmap replaces these with <strong>verified imports</strong> from official university sources (see Section 6).</p>
+<h3 id="45-ai-capabilities-current">4.5 AI capabilities (current)</h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Implementation</th>
+<th>LLM required?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Story validation &amp; rejection</td>
+<td>Rule-based patterns</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Intake extraction</td>
+<td>Rules + optional LLM with Pydantic validation</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>Path intent (study / work / explore)</td>
+<td>Rules</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Mentor matching</td>
+<td>Weighted rules (country, field, degree, notes)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Portfolio matching</td>
+<td>Rules (IELTS, GPA, fees, field fit)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Programme retrieval</td>
+<td>Keyword / rule scoring over corpus</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Programme chat</td>
+<td>Intent classification + retrieval + optional LLM phrasing</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>Off-topic detection</td>
+<td>Rules (e.g. non-programme queries redirected)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Explicitly excluded from AI:</strong> visa eligibility, immigration strategy, legal advice, autonomous payments.</p>
+<h3 id="46-deployment-architecture-single-server">4.6 Deployment architecture (single server)</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>URL</th>
+<th>Process</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Website</td>
+<td><code>https://leapto.co.uk</code></td>
+<td>Static files (FTP deploy from GitHub Actions)</td>
+</tr>
+<tr>
+<td>API</td>
+<td><code>https://api.leapto.co.uk</code></td>
+<td>uvicorn on <code>127.0.0.1:8080</code>, nginx reverse proxy</td>
+</tr>
+<tr>
+<td>TLS</td>
+<td>Both hostnames</td>
+<td>Let’s Encrypt (certbot)</td>
+</tr>
+<tr>
+<td>Process manager</td>
+<td>API only</td>
+<td>systemd (<code>leapto-ai-api.service</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>DNS: <strong>A record</strong> <code>api.leapto.co.uk</code> → same IP as <code>leapto.co.uk</code>.</p>
+<hr />
+<h2 id="5-responsible-ai-data-governance">5. Responsible AI &amp; data governance</h2>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>How Leapto implements it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Grounding</strong></td>
+<td>Programme answers cite database rows and official URLs only</td>
+</tr>
+<tr>
+<td><strong>Abstention</strong></td>
+<td>If no match or off-topic query → clarify or redirect, not invent</td>
+</tr>
+<tr>
+<td><strong>Validation</strong></td>
+<td>All LLM extractions pass schema validation; fallback to rules</td>
+</tr>
+<tr>
+<td><strong>Transparency</strong></td>
+<td>Match reasons shown to user; eval version tags in API health</td>
+</tr>
+<tr>
+<td><strong>Human oversight</strong></td>
+<td>Mentor booking and support always available</td>
+</tr>
+<tr>
+<td><strong>Fairness</strong></td>
+<td>Matching on study/work fit, not protected attributes</td>
+</tr>
+<tr>
+<td><strong>Privacy</strong></td>
+<td>Minimum necessary intake fields; confidential handling of free text</td>
+</tr>
+<tr>
+<td><strong>Testing</strong></td>
+<td>Gold-set eval (<code>run_eval.py</code>) + CI workflow before merge</td>
+</tr>
+</tbody>
+</table>
+<p>Risk tier: <strong>Limited</strong> (decision support, not autonomous legal or medical decisions).</p>
+<hr />
+<h2 id="6-target-architecture-1224-months-planned">6. Target architecture (12–24 months — planned)</h2>
+<h3 id="61-vision">6.1 Vision</h3>
+<p>Evolve from a <strong>wizard + rules</strong> MVP to a <strong>conversation-first platform</strong> where a governed AI agent:</p>
+<ul>
+<li>Understands goals in natural language (Persian/English)  </li>
+<li>Calls <strong>tools</strong> (match, portfolio, quote, book) with verified data  </li>
+<li>Proposes <strong>packages</strong> (mentor sessions, application packs)  </li>
+<li>Requires <strong>human confirmation</strong> before payment or applications  </li>
+</ul>
+<h3 id="62-target-logical-architecture">6.2 Target logical architecture</h3>
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Client
+        UI[Unified chat UI&lt;br/&gt;web + mobile-ready]
+    end
+
+    subgraph Gateway
+        APIGW[API gateway / auth&lt;br/&gt;rate limits]
+    end
+
+    subgraph Agent[&quot;Conversation layer (planned)&quot;]
+        ORCH[LLM orchestrator&lt;br/&gt;tool-calling agent]
+        GUARD[Policy guardrails&lt;br/&gt;RAI + eval]
+    end
+
+    subgraph Services[&quot;Domain services&quot;]
+        EXT[Extraction service]
+        MAT[Mentor matching]
+        PORT[Portfolio matching]
+        RAG[Programme RAG / search]
+        QUO[Quote &amp; catalog]
+        ORD[Orders &amp; checkout]
+        NOT[Notifications]
+    end
+
+    subgraph DataPlanned[&quot;Data platform (planned)&quot;]
+        PG[(PostgreSQL&lt;br/&gt;programmes, universities, intakes)]
+        VDB[(Vector index&lt;br/&gt;mentor bios, programme text)]
+        OBJ[(Object storage&lt;br/&gt;documents, exports)]
+        CACHE2[Redis cache&lt;br/&gt;sessions, rate limits]
+    end
+
+    subgraph Integrations
+        LLM2[LLM provider]
+        STR[Stripe]
+        XRO[Xero]
+        ATT[Attio CRM]
+    end
+
+    UI --&gt; APIGW --&gt; ORCH
+    ORCH --&gt; GUARD
+    ORCH --&gt; EXT &amp; MAT &amp; PORT &amp; RAG &amp; QUO
+    EXT &amp; MAT &amp; PORT &amp; RAG --&gt; PG
+    RAG --&gt; VDB
+    QUO --&gt; ORD --&gt; STR
+    STR --&gt; XRO
+    ORCH --&gt; LLM2
+    MAT --&gt; VDB
+    ORD --&gt; ATT
+</code></pre>
+<h3 id="63-full-university-programme-database-planned">6.3 Full university &amp; programme database (planned)</h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Scope</th>
+<th>Data source strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phase 1 (done)</strong></td>
+<td>~3k MSc seed rows for dev/demo</td>
+<td>Structured seed from known university lists</td>
+</tr>
+<tr>
+<td><strong>Phase 2</strong></td>
+<td>UK <strong>verified</strong> catalogue (target 3,000–10,000+ live programmes)</td>
+<td>HESA / institution feeds, UCAS PG, direct university PG pages, manual QA</td>
+</tr>
+<tr>
+<td><strong>Phase 3</strong></td>
+<td>Multi-country expansion</td>
+<td>Germany (DAAD), Canada, Australia official listings</td>
+</tr>
+<tr>
+<td><strong>Phase 4</strong></td>
+<td>Requirements depth</td>
+<td>Entry requirements, deadlines, scholarships, intakes — with <code>last_verified_at</code> and source URL per field</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PostgreSQL schema (conceptual):</strong></p>
+<ul>
+<li><code>universities</code> — country, ranking band, accreditation, website  </li>
+<li><code>programmes</code> — degree level, field, tuition, currency, duration, URL  </li>
+<li><code>programme_requirements</code> — IELTS, GPA scales, prerequisites, work experience  </li>
+<li><code>programme_intakes</code> — start terms, application deadlines  </li>
+<li><code>data_lineage</code> — source URL, scrape/import job ID, verification date  </li>
+</ul>
+<h3 id="64-planned-ai-feature-catalogue">6.4 Planned AI feature catalogue</h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Feature</th>
+<th>Type</th>
+<th>Priority</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI-01</td>
+<td>Unified conversation agent</td>
+<td>Agent + tools</td>
+<td>P0</td>
+<td>Single chat thread replacing chip wizard</td>
+</tr>
+<tr>
+<td>AI-02</td>
+<td>Governed intake extraction</td>
+<td>NLP / GenAI</td>
+<td>P0</td>
+<td>Already scaffolded; production LLM with eval gates</td>
+</tr>
+<tr>
+<td>AI-03</td>
+<td>Mentor semantic match</td>
+<td>Hybrid RAG + rules</td>
+<td>P1</td>
+<td>Embeddings over mentor bios; hard filters retained</td>
+</tr>
+<tr>
+<td>AI-04</td>
+<td>Programme semantic search</td>
+<td>RAG + vector DB</td>
+<td>P1</td>
+<td>Natural language over full programme corpus</td>
+</tr>
+<tr>
+<td>AI-05</td>
+<td>Reach / match / safety explainer</td>
+<td>GenAI grounded</td>
+<td>P1</td>
+<td>Explains <em>why</em> programmes sit in each bucket</td>
+</tr>
+<tr>
+<td>AI-06</td>
+<td>Document checklist generator</td>
+<td>Rules + LLM</td>
+<td>P2</td>
+<td>SOP/CV checklist per programme (templates, not auto-submit)</td>
+</tr>
+<tr>
+<td>AI-07</td>
+<td>Package quoter</td>
+<td>Rules + agent</td>
+<td>P2</td>
+<td>“2 mentor sessions + 10 applications” → Stripe quote</td>
+</tr>
+<tr>
+<td>AI-08</td>
+<td>Session prep brief</td>
+<td>GenAI grounded</td>
+<td>P2</td>
+<td>Summarise intake for mentor before call</td>
+</tr>
+<tr>
+<td>AI-09</td>
+<td>Multilingual voice intake</td>
+<td>Speech-to-text</td>
+<td>P3</td>
+<td>Optional accessibility</td>
+</tr>
+<tr>
+<td>AI-10</td>
+<td>Analytics copilot (internal)</td>
+<td>BI + LLM</td>
+<td>P3</td>
+<td>Ops dashboard for conversion and quality</td>
+</tr>
+<tr>
+<td><strong>Excluded</strong></td>
+<td>Visa / legal Q&amp;A bot</td>
+<td>—</td>
+<td>—</td>
+<td>Escalate to humans only</td>
+</tr>
+<tr>
+<td><strong>Excluded</strong></td>
+<td>Autonomous application submission</td>
+<td>—</td>
+<td>—</td>
+<td>Human confirmation required</td>
+</tr>
+</tbody>
+</table>
+<h3 id="65-commerce-integration-planned">6.5 Commerce integration (planned)</h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Integration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product catalog</td>
+<td>Configurable SKUs: mentor sessions (1/2/N), application packs (5/10/N)</td>
+</tr>
+<tr>
+<td>Quote API</td>
+<td><code>POST /quote</code> → line items without payment</td>
+</tr>
+<tr>
+<td>Checkout</td>
+<td>Stripe Checkout Session</td>
+</tr>
+<tr>
+<td>Fulfilment</td>
+<td>Webhook → order record → mentor notification</td>
+</tr>
+<tr>
+<td>Accounting</td>
+<td>Stripe → Xero invoice sync (API or Zapier interim)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-technology-stack-summary">7. Technology stack summary</h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Current</th>
+<th>Planned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend</td>
+<td>HTML, CSS, JavaScript, jQuery</td>
+<td>Progressive enhancement; possible React island for chat</td>
+</tr>
+<tr>
+<td>API</td>
+<td>FastAPI, Pydantic, uvicorn</td>
+<td>+ auth, rate limiting, API gateway</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>JSON files</td>
+<td>PostgreSQL primary; Redis cache</td>
+</tr>
+<tr>
+<td>Search / RAG</td>
+<td>Rule-based retrieval</td>
+<td>pgvector or dedicated vector store</td>
+</tr>
+<tr>
+<td>LLM</td>
+<td>OpenAI-compatible (optional)</td>
+<td>Managed provider; prompt versioning</td>
+</tr>
+<tr>
+<td>CI/CD</td>
+<td>GitHub Actions (FTP + eval)</td>
+<td>+ API deploy pipeline, staging environment</td>
+</tr>
+<tr>
+<td>Monitoring</td>
+<td>Health endpoints</td>
+<td>Structured logs, uptime, error tracking</td>
+</tr>
+<tr>
+<td>Hosting</td>
+<td>Single VPS / dedicated server</td>
+<td>Same; scale vertically then horizontal API replicas</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-security-overview-summary">8. Security overview (summary)</h2>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTPS everywhere</td>
+<td>Required (Let’s Encrypt)</td>
+</tr>
+<tr>
+<td>API bound to localhost</td>
+<td>Yes; public access only via nginx</td>
+</tr>
+<tr>
+<td>Secrets (LLM keys, Stripe)</td>
+<td>Environment variables; not in Git</td>
+</tr>
+<tr>
+<td>CORS</td>
+<td>Configured for Leapto domains</td>
+</tr>
+<tr>
+<td>Input validation</td>
+<td>Pydantic schemas on all intake endpoints</td>
+</tr>
+<tr>
+<td>Dependency scanning</td>
+<td>Recommended via GitHub Dependabot</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-roadmap-summary">9. Roadmap summary</h2>
+<table>
+<thead>
+<tr>
+<th>Quarter</th>
+<th>Milestone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Q2 2026</strong></td>
+<td>Widget live on leapto.co.uk; API on api.leapto.co.uk; bilingual UI; programme chat</td>
+</tr>
+<tr>
+<td><strong>Q3 2026</strong></td>
+<td>Verified UK programme import pipeline; PostgreSQL migration; LLM agent beta</td>
+</tr>
+<tr>
+<td><strong>Q4 2026</strong></td>
+<td>Vector search; semantic mentor match; quote + Stripe checkout</td>
+</tr>
+<tr>
+<td><strong>2027</strong></td>
+<td>Multi-country verified data; application pack workflows; full analytics</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-document-control">10. Document control</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Author</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>28 May 2026</td>
+<td>Leapto / product &amp; engineering</td>
+<td>Initial formal architecture for external submission</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Intended use:</strong> Supporting material for visa, endorsement, or partner due diligence. Describes intended system design; production URLs and datasets may evolve per roadmap above.</p>
+<p><strong>Contact for technical queries:</strong> [Insert named contact / company email]</p>
+<hr />
+<h2 id="appendix-a-glossary">Appendix A — Glossary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Path mate</strong></td>
+<td>Peer mentor who has completed a similar international study/work journey</td>
+</tr>
+<tr>
+<td><strong>StudentIntake</strong></td>
+<td>Structured profile: countries, field, degree, GPA, IELTS, notes</td>
+</tr>
+<tr>
+<td><strong>RAG</strong></td>
+<td>Retrieval-Augmented Generation — answers grounded in a database</td>
+</tr>
+<tr>
+<td><strong>Reach / match / safety</strong></td>
+<td>Standard admissions framing for ambitious, realistic, and conservative programme choices</td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendix-b-repository-map">Appendix B — Repository map</h2>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>horizon</code></td>
+<td>Public website, mentor profiles (HTML), path-mate widget assets</td>
+</tr>
+<tr>
+<td><code>leapto-ai</code></td>
+<td>FastAPI service, mentor/programme JSON, eval tests, deployment templates, product documentation</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>End of document</em></p></body></html>

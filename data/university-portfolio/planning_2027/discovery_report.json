@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-08-15T13:41:29.775389+00:00",
+  "universities_attempted": 1,
+  "universities_with_courses": 1,
+  "courses_found": 931,
+  "with_tuition": 480,
+  "with_ielts": 458,
+  "with_published_start_term": 850,
+  "subject_family_counts": {
+    "computing-data-ai": 143,
+    "business-management-finance": 282,
+    "engineering-technology": 196,
+    "health-life-sciences": 187,
+    "economics-social-policy": 123
+  },
+  "universities": [
+    {
+      "university": "Newcastle University",
+      "catalogue_status": 200,
+      "direct_links": 364,
+      "sitemap_links": 0,
+      "candidate_pages_checked": 364,
+      "fetch_failures": 260,
+      "courses_found": 21,
+      "elapsed_seconds": 447.7
+    }
+  ]
+}
