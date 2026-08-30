@@ -209,7 +209,9 @@ def extract_from_text(text: str) -> dict[str, Any]:
         "path_intent": path_intent,
         "budget_focus": _budget_focus(text),
         "needs_path_clarify": path_intent
-        in ("alternatives_to_study", "emigration_explore", "work_abroad", "unclear"),
+        in ("alternatives_to_study", "emigration_explore", "work_abroad", "unclear")
+        and not field
+        and not countries,
         "partial_intake": partial,
         "extractor": EXTRACTOR_VERSION,
         "confidence": round(confidence, 2),
